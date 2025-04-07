@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulir Sewa Ilham Camera</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Animation CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #2563eb;
+            --secondary-color: #1e40af;
+            --accent-color: #60a5fa;
+            --light-color: #f3f4f6;
+            --dark-color: #1f2937;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #f8fafc, #e2e8f0);
+            min-height: 100vh;
+            padding: 40px 0;
+        }
+        
+        .form-container {
+            background-color: white;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            max-width: 850px;
+            margin: 0 auto;
+            transition: all 0.3s ease;
+        }
+        
+        .form-container:hover {
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+        }
+        
+        .header {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 30px 20px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 60%);
+            animation: pulse 10s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); opacity: 0.5; }
+            50% { transform: scale(1.05); opacity: 0.7; }
+            100% { transform: scale(1); opacity: 0.5; }
+        }
+        
+        .logo {
+            max-width: 120px;
+            margin-bottom: 15px;
+            border-radius: 50%;
+            border: 3px solid white;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            position: relative;
+            z-index: 1;
+        }
+        
+        .form-section {
+            padding: 40px;
+        }
+        
+        .form-floating {
+            margin-bottom: 20px;
+        }
+        
+        .form-floating > label {
+            font-weight: 500;
+            color: #64748b;
+        }
+        
+        .form-control:focus {
+            border-color: var(--accent-color);
+            box-shadow: 0 0 0 0.25rem rgba(96, 165, 250, 0.25);
+        }
+
+        .btn-primary {
+            background-color: var(--primary-color);
+            border-color: var(--primary-color);
+            padding: 12px 24px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary:hover {
+            background-color: var(--secondary-color);
+            border-color: var(--secondary-color);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(37, 99, 235, 0.3);
+        }
+        
+        .section-title {
+            color: var(--primary-color);
+            font-weight: 600;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #e2e8f0;
+            position: relative;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -2px;
+            width: 60px;
+            height: 2px;
+            background-color: var(--primary-color);
+        }
+        
+        .document-checkbox {
+            margin-bottom: 15px;
+        }
+        
+        .document-checkbox input[type="checkbox"] {
+            margin-right: 10px;
+        }
+        
+        .document-checkbox label {
+            font-weight: normal;
+            user-select: none;
+        }
+        
+        .alert {
+            border-radius: 8px;
+            font-weight: 500;
+        }
+        
+        .step-indicator {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 30px;
+        }
+        
+        .step {
+            flex: 1;
+            text-align: center;
+            position: relative;
+            padding-bottom: 20px;
+        }
+        
+        .step-circle {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: #e2e8f0;
+            color: #64748b;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 10px;
+            font-weight: 600;
+            position: relative;
+            z-index: 2;
+            transition: all 0.3s ease;
+        }
+        
+        .step.active .step-circle {
+            background-color: var(--primary-color);
+            color: white;
+            box-shadow: 0 0 0 5px rgba(37, 99, 235, 0.2);
+        }
+        
+        .step-title {
+            font-size: 14px;
+            color: #64748b;
+            transition: all 0.3s ease;
+        }
+        
+        .step.active .step-title {
+            color: var(--primary-color);
+            font-weight: 600;
+        }
+        
+        .step-connector {
+            position: absolute;
+            top: 20px;
+            left: 50%;
+            width: 100%;
+            height: 2px;
+            background-color: #e2e8f0;
+        }
+        
+        .step:last-child .step-connector {
+            display: none;
+        }
+        
+        .form-step {
+            display: none;
+        }
+        
+        .form-step.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .btn-nav {
+            margin-top: 20px;
+        }
+        
+        .footer {
+            text-align: center;
+            color: #64748b;
+            font-size: 14px;
+            padding: 20px;
+            background-color: #f8fafc;
+            border-top: 1px solid #e2e8f0;
+        }
+        
+        .is-invalid {
+            border-color: #dc3545 !important;
+        }
+        
+        .invalid-feedback {
+            color: #dc3545;
+            font-size: 0.875em;
+            margin-top: 0.25rem;
+        }
+
+        .social-media-label {
+            display: flex;
+            align-items: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="form-container animate__animated animate__fadeIn">
+            <div class="header">
+                <img src="https://via.placeholder.com/120" alt="Ilham Camera Logo" class="logo animate__animated animate__pulse animate__infinite">
+                <h1 class="fw-bold mb-2">FORMULIR SEWA ILHAM CAMERA</h1>
+                <p class="mb-0">Silakan isi formulir dengan data yang benar</p>
+            </div>
+            
+            <div class="form-section">
+                <div class="step-indicator">
+                    <div class="step active">
+                        <div class="step-circle">1</div>
+                        <div class="step-title">Identitas</div>
+                        <div class="step-connector"></div>
+                    </div>
+                    <div class="step">
+                        <div class="step-circle">2</div>
+                        <div class="step-title">Detail Sewa</div>
+                        <div class="step-connector"></div>
+                    </div>
+                    <div class="step">
+                        <div class="step-circle">3</div>
+                        <div class="step-title">Dokumen</div>
+                    </div>
+                </div>
+                
+                <form id="sewaForm">
+                    <!-- Step 1: Identitas -->
+                    <div class="form-step active" id="step1">
+                        <h4 class="section-title">Data Diri</h4>
+                        
+                        <div class="form-floating mb-3">
+                            <input type="text" class="form-control" id="nama" name="nama" placeholder="Nama Lengkap" required>
+                            <label for="nama">Nama Lengkap *</label>
+                            <div class="invalid-feedback">Harap isi nama lengkap</div>
+                        </div>
+                        
+                        <div class="form-floating mb-3">
+                            <textarea class="form-control" id="alamat" name="alamat" placeholder="Alamat" style="height: 100px" required></textarea>
+                            <label for="alamat">Alamat Lengkap *</label>
+                            <div class="invalid-feedback">Harap isi alamat lengkap</div>
+                        </div>
+                        
+                        <div class="form-floating mb-3">
+                            <input type="tel" class="form-control" id="telepon" name="telepon" placeholder="Nomor Telepon" required>
+                            <label for="telepon">Nomor Telepon *</label>
+                            <div class="invalid-feedback">Harap isi nomor telepon</div>
+                        </div>
+
+                        <!-- Social Media Section -->
+                        <h5 class="mt-4 mb-3">Media Sosial (Opsional)</h5>
+                        
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-floating mb-3">
+                                    <input type="text" class="form-control" id="instagram" name="instagram" placeholder="Instagram">
+                                    <label for="instagram" class="social-media-label"><i class="fab fa-instagram me-2"></i> Instagram</label>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-floating mb-3">
+                                    <input type="text" class="form-control" id="tiktok" name="tiktok" placeholder="TikTok">
+                                    <label for="tiktok" class="social-media-label"><i class="fab fa-tiktok me-2"></i> TikTok</label>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-floating mb-3">
+                                    <input type="text" class="form-control" id="facebook" name="facebook" placeholder="Facebook">
+                                    <label for="facebook" class="social-media-label"><i class="fab fa-facebook me-2"></i> Facebook</label>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="d-grid btn-nav">
+                            <button type="button" class="btn btn-primary next-step">Lanjutkan <i class="fas fa-arrow-right ms-2"></i></button>
+                        </div>
+                    </div>
+                    
+                    <!-- Step 2: Detail Sewa -->
+                    <div class="form-step" id="step2">
+                        <h4 class="section-title">Detail Penyewaan</h4>
+                        
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-floating mb-3">
+                                    <input type="date" class="form-control" id="tanggal_sewa" name="tanggal_sewa" required>
+                                    <label for="tanggal_sewa">Tanggal Sewa *</label>
+                                    <div class="invalid-feedback">Harap pilih tanggal sewa</div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-floating mb-3">
+                                    <input type="date" class="form-control" id="tanggal_kembali" name="tanggal_kembali" required>
+                                    <label for="tanggal_kembali">Tanggal Kembali *</label>
+                                    <div class="invalid-feedback">Harap pilih tanggal kembali</div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-floating mb-3">
+                                    <select class="form-select" id="jenis_sewa" name="jenis_sewa" required>
+                                        <option value="" selected disabled>Pilih jenis</option>
+                                        <option value="KAMERA">KAMERA</option>
+                                        <option value="IPHONE">IPHONE</option>
+                                        <option value="LAPTOP">LAPTOP</option>
+                                        <option value="DRONE">DRONE</option>
+                                        <option value="TRIPOD">TRIPOD</option>
+                                        <option value="LENSA">LENSA</option>
+                                        <option value="LAINNYA">LAINNYA</option>
+                                    </select>
+                                    <label for="jenis_sewa">Apa Yang Kamu Sewa? *</label>
+                                    <div class="invalid-feedback">Harap pilih jenis sewa</div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-floating mb-3">
+                                    <input type="text" class="form-control" id="tipe" name="tipe" placeholder="Tipe" required>
+                                    <label for="tipe">Type Yang Kamu Sewa? *</label>
+                                    <div class="invalid-feedback">Harap isi tipe yang disewa</div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-floating mb-3">
+                                    <input type="text" class="form-control" id="acara" name="acara" placeholder="Acara" required>
+                                    <label for="acara">Untuk Acara Apa? *</label>
+                                    <div class="invalid-feedback">Harap isi untuk acara apa</div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-floating mb-3">
+                                    <input type="text" class="form-control" id="dp" name="dp" placeholder="Jumlah DP" required>
+                                    <label for="dp">Jumlah DP (Rp) *</label>
+                                    <div class="invalid-feedback">Harap isi jumlah DP</div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="d-flex justify-content-between btn-nav">
+                            <button type="button" class="btn btn-outline-secondary prev-step"><i class="fas fa-arrow-left me-2"></i> Kembali</button>
+                            <button type="button" class="btn btn-primary next-step">Lanjutkan <i class="fas fa-arrow-right ms-2"></i></button>
+                        </div>
+                    </div>
+                    
+                    <!-- Step 3: Dokumen -->
+                    <div class="form-step" id="step3">
+                        <h4 class="section-title">Dokumen Persyaratan</h4>
+                        
+                        <div class="alert alert-info mb-4">
+                            <i class="fas fa-info-circle me-2"></i> Pilih minimal 3 dokumen yang akan diserahkan sebagai jaminan penyewaan
+                        </div>
+                        
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="document-checkbox form-check">
+                                    <input class="form-check-input" type="checkbox" id="ktp" name="dokumen" value="KTP">
+                                    <label class="form-check-label" for="ktp">
+                                        <i class="fas fa-id-card me-2"></i> KTP
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="document-checkbox form-check">
+                                    <input class="form-check-input" type="checkbox" id="kk" name="dokumen" value="KK">
+                                    <label class="form-check-label" for="kk">
+                                        <i class="fas fa-users me-2"></i> Kartu Keluarga (KK)
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="document-checkbox form-check">
+                                    <input class="form-check-input" type="checkbox" id="stnk" name="dokumen" value="STNK">
+                                    <label class="form-check-label" for="stnk">
+                                        <i class="fas fa-motorcycle me-2"></i> STNK
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="document-checkbox form-check">
+                                    <input class="form-check-input" type="checkbox" id="ijazah" name="dokumen" value="IJAZAH">
+                                    <label class="form-check-label" for="ijazah">
+                                        <i class="fas fa-graduation-cap me-2"></i> Ijazah
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="document-checkbox form-check">
+                                    <input class="form-check-input" type="checkbox" id="sim" name="dokumen" value="SIM">
+                                    <label class="form-check-label" for="sim">
+                                        <i class="fas fa-id-badge me-2"></i> SIM
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="document-checkbox form-check">
+                                    <input class="form-check-input" type="checkbox" id="akta" name="dokumen" value="AKTA">
+                                    <label class="form-check-label" for="akta">
+                                        <i class="fas fa-file-alt me-2"></i> Akta Kelahiran
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="alert alert-success mt-4 mb-4 animate__animated animate__fadeIn" id="dokumenValidMessage" style="display: none;">
+                            <i class="fas fa-check-circle me-2"></i> Dokumen yang dipilih sudah mencukupi
+                        </div>
+                        
+                        <div class="alert alert-danger mt-4 mb-4 animate__animated animate__fadeIn" id="dokumenInvalidMessage" style="display: none;">
+                            <i class="fas fa-exclamation-triangle me-2"></i> Mohon pilih minimal 3 dokumen
+                        </div>
+                        
+                        <div class="d-flex justify-content-between btn-nav">
+                            <button type="button" class="btn btn-outline-secondary prev-step"><i class="fas fa-arrow-left me-2"></i> Kembali</button>
+                            <button type="submit" class="btn btn-primary"><i class="fas fa-paper-plane me-2"></i> Kirim Formulir</button>
+                        </div>
+                    </div>
+                </form>
+                
+                <div class="alert alert-success mt-4 animate__animated animate__fadeIn" id="successMessage" style="display: none;">
+                    <i class="fas fa-check-circle me-2"></i> Formulir berhasil dikirim! Kami akan segera menghubungi Anda untuk konfirmasi.
+                </div>
+                
+                <div class="alert alert-danger mt-4 animate__animated animate__fadeIn" id="errorMessage" style="display: none;">
+                    <i class="fas fa-exclamation-circle me-2"></i> Gagal mengirim data. Silakan coba lagi atau hubungi kami langsung.
+                </div>
+            </div>
+            
+            <div class="footer">
+                <p class="mb-1">© 2025 Ilham Camera - Solusi Sewa Kamera dan Peralatan Multimedia</p>
+                <p class="mb-0"><i class="fas fa-phone me-2"></i> 0812-3456-7890 | <i class="fas fa-envelope me-2"></i> ilhamcamera@gmail.com</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS & Dependencies -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    
+    <script>
+        // Form steps navigation
+        const steps = document.querySelectorAll('.step');
+        const formSteps = document.querySelectorAll('.form-step');
+        const nextButtons = document.querySelectorAll('.next-step');
+        const prevButtons = document.querySelectorAll('.prev-step');
+        let currentStep = 0;
+        
+        // Update steps
+        function updateSteps(stepIndex) {
+            steps.forEach((step, index) => {
+                if (index <= stepIndex) {
+                    step.classList.add('active');
+                } else {
+                    step.classList.remove('active');
+                }
+            });
+            
+            formSteps.forEach((step, index) => {
+                if (index === stepIndex) {
+                    step.classList.add('active');
+                } else {
+                    step.classList.remove('active');
+                }
+            });
+            
+            currentStep = stepIndex;
+            
+            // Scroll to top of form
+            document.querySelector('.form-section').scrollTop = 0;
+        }
+        
+        // Next step buttons
+        nextButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                // Simple validation for current step
+                const currentFormStep = formSteps[currentStep];
+                const inputs = currentFormStep.querySelectorAll('input[required], select[required], textarea[required]');
+                let isValid = true;
+                
+                inputs.forEach(input => {
+                    if (!input.value) {
+                        isValid = false;
+                        input.classList.add('is-invalid');
+                        
+                        // Tambahkan animasi shake untuk input yang tidak valid
+                        input.classList.add('animate__animated', 'animate__headShake');
+                        setTimeout(() => {
+                            input.classList.remove('animate__animated', 'animate__headShake');
+                        }, 1000);
+                    } else {
+                        input.classList.remove('is-invalid');
+                    }
+                });
+                
+                if (isValid) {
+                    updateSteps(currentStep + 1);
+                } else {
+                    // Tampilkan pesan error jika ada field yang kosong
+                    const errorAlert = document.createElement('div');
+                    errorAlert.className = 'alert alert-danger mt-3 animate__animated animate__fadeIn';
+                    errorAlert.innerHTML = '<i class="fas fa-exclamation-circle me-2"></i> Harap isi semua field yang wajib diisi';
+                    
+                    // Hapus pesan error sebelumnya jika ada
+                    const existingAlert = currentFormStep.querySelector('.alert.alert-danger');
+                    if (existingAlert) {
+                        existingAlert.remove();
+                    }
+                    
+                    currentFormStep.insertBefore(errorAlert, currentFormStep.querySelector('.btn-nav'));
+                    
+                    // Hapus pesan error setelah 3 detik
+                    setTimeout(() => {
+                        errorAlert.classList.add('animate__fadeOut');
+                        setTimeout(() => {
+                            errorAlert.remove();
+                        }, 500);
+                    }, 3000);
+                }
+            });
+        });
+        
+        // Previous step buttons
+        prevButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                updateSteps(currentStep - 1);
+            });
+        });
+        
+        // Check document checkboxes
+        const dokumenCheckboxes = document.querySelectorAll('input[name="dokumen"]');
+        const dokumenValidMessage = document.getElementById('dokumenValidMessage');
+        const dokumenInvalidMessage = document.getElementById('dokumenInvalidMessage');
+        
+        function checkDokumenSelection() {
+            const checked = Array.from(dokumenCheckboxes).filter(cb => cb.checked);
+            if (checked.length >= 3) {
+                dokumenValidMessage.style.display = 'block';
+                dokumenInvalidMessage.style.display = 'none';
+                return true;
+            } else {
+                dokumenValidMessage.style.display = 'none';
+                if (checked.length > 0) {
+                    dokumenInvalidMessage.style.display = 'block';
+                } else {
+                    dokumenInvalidMessage.style.display = 'none';
+                }
+                return false;
+            }
+        }
+        
+        dokumenCheckboxes.forEach(checkbox => {
+            checkbox.addEventListener('change', checkDokumenSelection);
+        });
+        
+        // Ambil data checkbox yang dipilih
+        function getDokumenTerpilih() {
+            const checked = Array.from(document.querySelectorAll('input[name="dokumen"]:checked'));
+            return checked.map(item => item.value).join(', ');
+        }
+        
+        sewaForm.addEventListener('submit', async (event) => {
+    event.preventDefault();
+    
+    if (!checkDokumenSelection()) {
+        dokumenInvalidMessage.style.display = 'block';
+        return;
+    }
+
+    const submitButton = sewaForm.querySelector('button[type="submit"]');
+    const originalButtonText = submitButton.innerHTML;
+    submitButton.disabled = true;
+    submitButton.innerHTML = '<span class="spinner-border spinner-border-sm me-2"></span> Mengirim...';
+
+    try {
+        // Format data
+        const formData = {
+            nama: document.getElementById('nama').value,
+            telepon: document.getElementById('telepon').value,
+            alamat: document.getElementById('alamat').value,
+            instagram: document.getElementById('instagram').value,
+            tiktok: document.getElementById('tiktok').value,
+            facebook: document.getElementById('facebook').value,
+            jenis_sewa: document.getElementById('jenis_sewa').value,
+            tipe: document.getElementById('tipe').value,
+            tanggal_sewa: document.getElementById('tanggal_sewa').value,
+            tanggal_kembali: document.getElementById('tanggal_kembali').value,
+            acara: document.getElementById('acara').value,
+            dp: document.getElementById('dp').value,
+            dokumen: getDokumenTerpilih()
+        };
+
+        // 1. Kirim ke Google Sheets
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbzN-xbdK9iay_f5kmU7MF1-2JUjMUO4X6UK0FZ8QszvfIkIxig58prQdnTDZOM79_q0oQ/exec';
+        const response = await fetch(scriptURL, {
+            method: 'POST',
+            mode: 'no-cors', // Tambahkan ini untuk bypass CORS sederhana
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(formData)
+        });
+
+        // 2. Buka WhatsApp
+        const whatsappNumber = '6281332346025'; // Ganti dengan nomor Anda
+        const message = `Halo saya ${formData.nama}\n\n*Detail Penyewaan:*\nNama: ${formData.nama}\nTelepon: ${formData.telepon}\nAlamat: ${formData.alamat}\n\nJenis Sewa: ${formData.jenis_sewa}\nTipe: ${formData.tipe}\nTanggal Sewa: ${formData.tanggal_sewa}\nTanggal Kembali: ${formData.tanggal_kembali}\nUntuk Acara: ${formData.acara}\nDP: Rp ${formData.dp}\n\nDokumen Jaminan:\n${formData.dokumen}\n\nCatatan:\n- Harap bawa dokumen asli\n- Belum DP = Belum booking\n\nTerima kasih`;
+
+const encodedMessage = encodeURIComponent(message);
+        const whatsappLink = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
+        
+        // Buka WhatsApp di tab baru
+        window.open(whatsappLink, '_blank');
+
+        // Reset form
+        sewaForm.reset();
+        successMessage.style.display = 'block';
+        errorMessage.style.display = 'none';
+        updateSteps(0);
+
+    } catch (error) {
+        console.error('Error:', error);
+        errorMessage.style.display = 'block';
+        successMessage.style.display = 'none';
+    } finally {
+        submitButton.disabled = false;
+        submitButton.innerHTML = originalButtonText;
+    }
+});
+    </script>
+</body>
+</html>
