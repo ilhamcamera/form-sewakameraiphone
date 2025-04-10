@@ -3,7 +3,7 @@
     --secondary-color: #7A2527;   /* Merah tua (untuk hover/teks penting) */
     --accent-color: #D1A3A4;      /* Merah muda lembut (aksen) */
     --light-color: #FFF5F5;       /* Putih susu (background) */
-    --dark-color: #2C1A1A;        /* Coklat gelap (teks/header) */
+    --dark-color: #ffffff;        /* Coklat gelap (teks/header) */
 }
 
 body {
