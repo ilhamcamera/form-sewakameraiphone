@@ -36,6 +36,35 @@ body {
     overflow: hidden;
 }
 
+    /* Logo Styles */
+.logo-container {
+    margin: 0 auto 20px;
+    display: flex;
+    justify-content: center;
+}
+
+.logo-large {
+    width: 200px; /* Sesuaikan ukuran sesuai kebutuhan */
+    height: auto;
+    max-width: 100%;
+    object-fit: contain;
+}
+
+/* Header Styles */
+.header {
+    padding: 20px 0;
+}
+
+.header h1 {
+    font-size: 2rem;
+    color: #333;
+    margin-top: 15px;
+}
+
+.header p {
+    color: #666;
+    font-size: 1.1rem;
+}
 .header::before {
     content: '';
     position: absolute;
