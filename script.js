@@ -5,36 +5,6 @@ const nextButtons = document.querySelectorAll('.next-step');
 const prevButtons = document.querySelectorAll('.prev-step');
 let currentStep = 0;
 
-// Inisialisasi tanggal minimum (hari ini)
-const today = new Date();
-const todayFormatted = today.toISOString().split('T')[0];
-
-// Setup input tanggal dengan jam
-window.addEventListener('DOMContentLoaded', function() {
-    // Ubah tipe input dari 'date' menjadi 'datetime-local'
-    const tanggalSewa = document.getElementById('tanggal_sewa');
-    const tanggalKembali = document.getElementById('tanggal_kembali');
-    
-    if(tanggalSewa && tanggalKembali) {
-        // Ubah tipe input dan tambahkan minimum date
-        tanggalSewa.type = 'datetime-local';
-        tanggalKembali.type = 'datetime-local';
-        
-        // Set tanggal minimum ke hari ini
-        const todayWithTime = today.toISOString().slice(0, 16);
-        tanggalSewa.min = todayWithTime;
-        tanggalKembali.min = todayWithTime;
-        
-        // Event listener untuk memastikan tanggal kembali > tanggal sewa
-        tanggalSewa.addEventListener('change', function() {
-            tanggalKembali.min = this.value;
-            if(tanggalKembali.value && tanggalKembali.value < this.value) {
-                tanggalKembali.value = this.value;
-            }
-        });
-    }
-});
-
 // Update steps
 function updateSteps(stepIndex) {
     steps.forEach((step, index) => {
@@ -147,13 +117,6 @@ function getDokumenTerpilih() {
     return checked.map(item => item.value).join(', ');
 }
 
-// Format tanggal untuk pesan WhatsApp
-function formatDateTimeForMessage(dateTimeString) {
-    if (!dateTimeString) return '-';
-    const dt = new Date(dateTimeString);
-    return `${dt.toLocaleDateString('id-ID')} pukul ${dt.toLocaleTimeString('id-ID', {hour: '2-digit', minute:'2-digit'})}`;
-}
-
 // Form submission handler
 document.getElementById('sewaForm').addEventListener('submit', function(event) {
     event.preventDefault();
@@ -188,7 +151,7 @@ document.getElementById('sewaForm').addEventListener('submit', function(event) {
 
         // Siapkan pesan WhatsApp
         const whatsappNumber = '6281332346025';
-        const message = `Halo saya ${formData.nama}\n\n*Detail Penyewaan:*\nNama: ${formData.nama}\nTelepon: ${formData.telepon}\nAlamat: ${formData.alamat}\n\n*Media Sosial:*\nInstagram: ${formData.instagram || '-'}\nTikTok: ${formData.tiktok || '-'}\nFacebook: ${formData.facebook || '-'}\n\n*Detail Barang:*\nJenis Sewa: ${formData.jenis_sewa}\nTipe: ${formData.tipe}\nTanggal Sewa: ${formatDateTimeForMessage(formData.tanggal_sewa)}\nTanggal Kembali: ${formatDateTimeForMessage(formData.tanggal_kembali)}\nUntuk Acara: ${formData.acara}\nDP: Rp ${formData.dp}\n\n*Dokumen Jaminan:*\n${formData.dokumen}\n\n*Catatan:*\n- Harap bawa dokumen asli\n- Belum DP = Belum booking\n\nTerima kasih`;
+        const message = `Halo saya ${formData.nama}\n\n*Detail Penyewaan:*\nNama: ${formData.nama}\nTelepon: ${formData.telepon}\nAlamat: ${formData.alamat}\n\n*Media Sosial:*\nInstagram: ${formData.instagram || '-'}\nTikTok: ${formData.tiktok || '-'}\nFacebook: ${formData.facebook || '-'}\n\n*Detail Barang:*\nJenis Sewa: ${formData.jenis_sewa}\nTipe: ${formData.tipe}\nTanggal Sewa: ${formData.tanggal_sewa}\nTanggal Kembali: ${formData.tanggal_kembali}\nUntuk Acara: ${formData.acara}\nDP: Rp ${formData.dp}\n\n*Dokumen Jaminan:*\n${formData.dokumen}\n\n*Catatan:*\n- Harap bawa dokumen asli\n- Belum DP = Belum booking\n\nTerima kasih`;
 
         const encodedMessage = encodeURIComponent(message);
         const whatsappLink = `https://wa.me/${whatsappNumber}?text=${encodedMessage}`;
