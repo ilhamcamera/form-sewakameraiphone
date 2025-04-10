@@ -93,25 +93,22 @@
                     </div>
                     
                     <!-- Step 2: Detail Sewa -->
-                    <div class="form-step" id="step2">
-                        <h4 class="section-title">Detail Penyewaan</h4>
-                        
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-floating mb-3">
-                                    <input type="date" class="form-control" id="tanggal_sewa" name="tanggal_sewa" required>
-                                    <label for="tanggal_sewa">Tanggal Sewa *</label>
-                                    <div class="invalid-feedback">Harap pilih tanggal sewa</div>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-floating mb-3">
-                                    <input type="date" class="form-control" id="tanggal_kembali" name="tanggal_kembali" required>
-                                    <label for="tanggal_kembali">Tanggal Kembali *</label>
-                                    <div class="invalid-feedback">Harap pilih tanggal kembali</div>
-                                </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-floating mb-3">
+                                <input type="datetime-local" class="form-control" id="tanggal_sewa" name="tanggal_sewa" required>
+                                <label for="tanggal_sewa">Tanggal & Jam Sewa *</label>
+                                <div class="invalid-feedback">Harap pilih tanggal dan jam sewa</div>
                             </div>
                         </div>
+                        <div class="col-md-6">
+                            <div class="form-floating mb-3">
+                                <input type="datetime-local" class="form-control" id="tanggal_kembali" name="tanggal_kembali" required>
+                                <label for="tanggal_kembali">Tanggal & Jam Kembali *</label>
+                                <div class="invalid-feedback">Harap pilih tanggal dan jam kembali</div>
+                            </div>
+                        </div>
+                    </div>
                         
                         <div class="row">
                             <div class="col-md-6">
