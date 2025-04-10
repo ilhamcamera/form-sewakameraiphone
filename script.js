@@ -150,7 +150,7 @@ document.getElementById('sewaForm').addEventListener('submit', function(event) {
         };
 
         // Siapkan pesan WhatsApp
-        const whatsappNumber = '6281332346025';
+        const whatsappNumber = '628999240196';
         const message = `Halo saya ${formData.nama}\n\n*Detail Penyewaan:*\nNama: ${formData.nama}\nTelepon: ${formData.telepon}\nAlamat: ${formData.alamat}\n\n*Media Sosial:*\nInstagram: ${formData.instagram || '-'}\nTikTok: ${formData.tiktok || '-'}\nFacebook: ${formData.facebook || '-'}\n\n*Detail Barang:*\nJenis Sewa: ${formData.jenis_sewa}\nTipe: ${formData.tipe}\nTanggal Sewa: ${formData.tanggal_sewa}\nTanggal Kembali: ${formData.tanggal_kembali}\nUntuk Acara: ${formData.acara}\nDP: Rp ${formData.dp}\n\n*Dokumen Jaminan:*\n${formData.dokumen}\n\n*Catatan:*\n- Harap bawa dokumen asli\n- Belum DP = Belum booking\n\nTerima kasih`;
 
         const encodedMessage = encodeURIComponent(message);
