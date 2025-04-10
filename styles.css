@@ -44,7 +44,7 @@ body {
 }
 
 .logo-large {
-    width: 200px; /* Sesuaikan ukuran sesuai kebutuhan */
+    width: 100px; /* Sesuaikan ukuran sesuai kebutuhan */
     height: auto;
     max-width: 100%;
     object-fit: contain;
