@@ -36,35 +36,6 @@ body {
     overflow: hidden;
 }
 
-    /* Logo Styles */
-.logo-container {
-    margin: 0 auto 20px;
-    display: flex;
-    justify-content: center;
-}
-
-.logo-large {
-    width: 100px; /* Sesuaikan ukuran sesuai kebutuhan */
-    height: auto;
-    max-width: 100%;
-    object-fit: contain;
-}
-
-/* Header Styles */
-.header {
-    padding: 20px 0;
-}
-
-.header h1 {
-    font-size: 2rem;
-    color: #333;
-    margin-top: 15px;
-}
-
-.header p {
-    color: #666;
-    font-size: 1.1rem;
-}
 .header::before {
     content: '';
     position: absolute;
@@ -83,7 +54,7 @@ body {
 }
 
 .logo {
-    max-width: 400px;
+    max-width: 200px;
     margin-bottom: 15px;
     border-radius: 50%;
     border: 3px solid white;
