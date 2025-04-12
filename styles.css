@@ -54,9 +54,9 @@ body {
 }
 
 .logo {
-    max-width: 100px;
+    max-width: 150px; /* Mengurangi ukuran dari 200px menjadi 150px */
+    height: auto; /* Memastikan rasio aspek dipertahankan */
     margin-bottom: 15px;
-    /* Removed border-radius: 50% */
     border: 3px solid white;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
     position: relative;
